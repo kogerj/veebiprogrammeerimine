@@ -1,12 +1,18 @@
  <?php
      $picsDir = "../../Pic/";
-	 
+	 $picsFileTypes = ["jpg", "jpeg", "png", "gif"];
 	 $picsFiles = [];
 	 
-	 $allFiles = scandir($picsDir);
+	 $allFiles = array_slice(scandir($picsDir), 2);
 	 //var_dump($allFiles);
+	 foreach ($allFiles as $file){
+		 $fileType = pathinfo($file, PATHINFO_EXTENSION);
+		 if(in_array($fileType, $picsFileTypes) == true){
+			 array_push($picsFiles, $file);
 	 
-	 $picsFiles = array_slice($allFiles, 2);
+		 }
+	 }
+	 //$picsFiles = array_slice($allFiles, 2);
 	 var_dump($picsFiles);
 	 
 	 $picsCount = count($picsFiles);
